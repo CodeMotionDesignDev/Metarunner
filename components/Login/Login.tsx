@@ -1,9 +1,13 @@
 // import { MouseEvent } from "react"; element for dynamic type checking of handlePointerMove function
 import { useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import BackgroundMusic from "@/utils/backgroundMusic";
+
 const Login = () => {
+  const { data: session } = useSession();
   //code for animation
   //   const [isHovered, setIsHovered] = useState(false);
   //   const handleHover = () => {
@@ -21,7 +25,14 @@ const Login = () => {
     el.style.setProperty("--posX", x - l - w / 2);
     el.style.setProperty("--posY", y - t - h / 2);
   };
-
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user?.name} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    );
+  }
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
@@ -31,6 +42,11 @@ const Login = () => {
       className="relative gradientBackground"
       onPointerMove={handlePointerMove}
     >
+      <BackgroundMusic />
+      {/* <audio autoPlay loop>
+        <source src={"/Disfigure-Blank.mp3"} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio> */}
       <Image
         src="/loginBG.svg"
         alt="Logo"
@@ -46,13 +62,15 @@ const Login = () => {
           height={100}
           className="lg:w-60 xl:w-72 xl:hover:w-80 lg:hover:w-64 hover:animate-ping delay-1000"
         />
-        <Image
-          src={"/stravaBTN.svg"}
-          alt="nikebutton"
-          width={100}
-          height={100}
-          className="lg:w-60 xl:w-72 hover:w-80 hover:animate-ping delay-1000"
-        />
+        <button onClick={() => signIn()}>
+          <Image
+            src={"/stravaBTN.svg"}
+            alt="nikebutton"
+            width={100}
+            height={100}
+            className="lg:w-60 xl:w-72 hover:w-80 hover:animate-ping delay-1000"
+          />
+        </button>
         <Image
           src={"/mapMyRunBTN.svg"}
           alt="nikebutton"
