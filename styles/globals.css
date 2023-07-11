@@ -2,26 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* custom style for login screen background */
+.gradientBackground {
+  height: 100vh;
+  /* max-height: 640px; */
+  margin: 0;
+  --x: calc(var(--posX, 0) * 1px);
+  --y: calc(var(--posY, 0) * 1px);
+  background-image: linear-gradient(115deg, rgb(211 255 215), rgb(0 0 0)),
+    radial-gradient(
+      90% 100% at calc(50% + var(--x)) calc(0% + var(--y)),
+      rgb(200 200 200),
+      rgb(022 000 045)
+    ),
+    radial-gradient(
+      100% 100% at calc(80% - var(--x)) calc(0% - var(--y)),
+      rgb(250 255 000),
+      rgb(036 000 000)
+    ),
+    radial-gradient(
+      150% 210% at calc(100% + var(--x)) calc(0% + var(--y)),
+      rgb(020 175 125),
+      rgb(000 010 255)
+    ),
+    radial-gradient(
+      100% 100% at calc(100% - var(--x)) calc(30% - var(--y)),
+      rgb(255 077 000),
+      rgb(000 200 255)
+    ),
+    linear-gradient(60deg, rgb(255 000 000), rgb(120 086 255));
+  background-blend-mode: overlay, overlay, difference, difference, difference,
+    normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/*style for different login types*/
+.imageContainer {
+  position: relative;
+  width: fit-content;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.pingAnimation {
+  animation: ping 1s;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
