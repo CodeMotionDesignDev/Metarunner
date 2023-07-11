@@ -5,18 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import BackgroundMusic from "@/utils/backgroundMusic";
+import Game from "../environment/game";
+import Home from "@/components/environment/Home";
+import ClassEnvironment from "@/components/environment/ClassEnvironment";
+import "../environment/environment";
 
 const Login = () => {
   const { data: session } = useSession();
-  //code for animation
-  //   const [isHovered, setIsHovered] = useState(false);
-  //   const handleHover = () => {
-  //     setIsHovered(true);
-  //   };
-
-  //   const handleAnimationEnd = () => {
-  //     setIsHovered(false);
-  //   };
 
   //code for dynamic gradient background
   const handlePointerMove = (e: any) => {
@@ -28,8 +23,11 @@ const Login = () => {
   if (session) {
     return (
       <>
-        Signed in as {session.user?.name} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        {/* Signed in as {session.user?.name} <br /> */}
+        {/* <canvas id="renderCanvas" className="h-full w-full" /> */}
+        {/* <Environment/> */}
+        <ClassEnvironment />
+        {/* <button onClick={() => signOut()}>Sign out</button> */}
       </>
     );
   }
@@ -43,10 +41,6 @@ const Login = () => {
       onPointerMove={handlePointerMove}
     >
       <BackgroundMusic />
-      {/* <audio autoPlay loop>
-        <source src={"/Disfigure-Blank.mp3"} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio> */}
       <Image
         src="/loginBG.svg"
         alt="Logo"
@@ -101,3 +95,20 @@ const Login = () => {
 };
 
 export default Login;
+
+{
+  /* <audio autoPlay loop>
+  <source src={"/Disfigure-Blank.mp3"} type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio> */
+}
+
+//code for animation
+//   const [isHovered, setIsHovered] = useState(false);
+//   const handleHover = () => {
+//     setIsHovered(true);
+//   };
+
+//   const handleAnimationEnd = () => {
+//     setIsHovered(false);
+//   };

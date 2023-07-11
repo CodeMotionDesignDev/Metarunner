@@ -10,8 +10,8 @@ export const authOptions = {
     //   clientSecret: process.env.GITHUB_SECRET,
     // }),
     StravaProvider({
-      clientId: process.env.STRAVA_ID,
-      clientSecret: process.env.STRAVA_SECRET,
+      clientId: process.env.NEXT_PUBLIC_STRAVA_ID,
+      clientSecret: process.env.NEXT_PUBLIC_STRAVA_SECRET,
     }),
     // ...add more providers here
   ],
